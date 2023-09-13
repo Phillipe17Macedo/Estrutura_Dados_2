@@ -2,37 +2,54 @@
 
 
 void bubbleSort(int arr[], int n) {
-    printf("BubbleSort\n");
+    printf("\nBubbleSort\n");
 }
 
 void selectionSort(int arr[], int n) {
-    printf("selectionSort\n");
+    printf("\nselectionSort\n");
 }
 
 void insertionSort(int arr[], int n) {
-    printf("insertionSort\n");
+    printf("\ninsertionSort\n");
 }
 
 void mergeSort(int arr[], int l, int r) {
-    printf("mergeSort");
+    printf("\nmergeSort\n");
 }
 
-int main() {
+void imprimirMenu(){
+    printf("Menu:\n");
+    printf("1. Bubble Sort\n");
+    printf("2. Selection Sort\n");
+    printf("3. Insertion Sort\n");
+    printf("4. Merge Sort\n");
+    printf("5. Sair\n");
+    printf("Escolha uma opção: ");
+}
+
+int main(){
     int opcao;
+    FILE *arquivo;
+    char linha[100];
     int arr[] = {5, 2, 9, 1, 5, 6};
     int n = sizeof(arr) / sizeof(arr[0]);
 
-    do {
-        printf("Menu:\n");
-        printf("1. Bubble Sort\n");
-        printf("2. Selection Sort\n");
-        printf("3. Insertion Sort\n");
-        printf("4. Merge Sort\n");
-        printf("5. Sair\n");
-        printf("Escolha uma opção: ");
+    arquivo = fopen("C:\\Users\\phsto\\OneDrive\\Documentos\\Faculdade\\EstruturaII\\Atividade_Ordenacao\\nomes2.txt.txt", "r");
+    if(arquivo == NULL){
+        printf("Erro ao abrir o arquivo!\n");
+        return 1;
+    }
+    while(fgets(linha, sizeof(linha), arquivo) != NULL){
+        printf("%s", linha);
+    }
+    fclose(arquivo);
+
+    do{
+        imprimirMenu();
+        printf("ESCOLHA UMA OPCAO: ");
         scanf("%d", &opcao);
 
-        switch (opcao) {
+        switch (opcao){
             case 1:
                 bubbleSort(arr, n);
                 break;
@@ -49,9 +66,9 @@ int main() {
                 printf("Saindo...\n");
                 break;
             default:
-                printf("Opção inválida. Tente novamente.\n");
+                printf("Opcao invalida. Tente novamente\n");
         }
-    } while (opcao != 5);
-
+    }while(opcao != 5);
+    
     return 0;
 }
